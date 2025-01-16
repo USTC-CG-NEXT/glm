@@ -148,6 +148,8 @@
 #		error "GLM requires ICC 2013 SP1 or newer"
 #	endif
 
+#elif defined(__CUDACC_RTC__)
+#define GLM_COMPILER GLM_COMPILER_CUDA_RTC
 // CUDA
 #elif defined(__CUDACC__)
 #	if !defined(CUDA_VERSION) && !defined(GLM_FORCE_CUDA)

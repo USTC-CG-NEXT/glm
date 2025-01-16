@@ -629,6 +629,47 @@
 #	define GLM_ASSERT_LENGTH(l, max) (assert ((l) >= 0 && (l) < (max)))
 #endif
 
+///////////////////////////////////////////////////////////////////////////////////
+// RTC
+
+#if GLM_COMPILER==GLM_COMPILER_CUDA_RTC
+#include <cuda/std/cmath>
+#include <cuda/std/utility>
+#include <cuda/std/functional>
+namespace glm {
+namespace std {
+	using size_t   = unsigned int;
+
+	using int8_t   = signed char;
+	using int16_t  = short;
+	using int32_t  = int ;
+	using int64_t  = long long;
+	using uint8_t  = unsigned char;
+	using uint16_t = unsigned short;
+	using uint32_t = unsigned int;
+	using uint64_t = unsigned long long;
+
+        template<typename T>
+	using numeric_limits = ::cuda::std::numeric_limits<T>;
+	template<typename T>
+	using minus = ::cuda::std::minus<T>;
+	template<typename T>
+	using plus = ::cuda::std::plus<T>;
+	template<typename T>
+	using multiplies = ::cuda::std::multiplies<T>;
+	template<typename T>
+	using divides = ::cuda::std::divides<T>;        
+} //namespace std
+	using ::cuda::std::sqrt;
+	using ::cuda::std::log;
+	using ::cuda::std::pow;
+	using ::cuda::std::exp;
+
+} //namespace glm
+#undef GLM_HAS_MAKE_SIGNED
+using namespace cuda;
+#endif
+
 namespace glm
 {
 	using std::size_t;
